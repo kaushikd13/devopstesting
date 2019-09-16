@@ -1,0 +1,22 @@
+stages:
+ - stage: Basics
+   jobs:
+   - job: Project details
+     - subscription: freetrial
+     - resource group: (new)test_group02
+   - job: Instance details
+     - storage account name: kaushikd354
+     - location: (US)East US
+     - performance: standard
+     - account kind: storage(general purpose v1)
+    - Replication: Read-access-geo-redundant storage(RA-GRS)
+ - stage: Networking
+   jobs:
+   - job: connectivity method: public endpoint(all networks)
+ - stage: Advanced
+   jobs:
+   - job: security
+     - secure transfer required: enabled
+   - job: Data protection
+     - blob soft delete: enabled
+     retain for: 15 days
