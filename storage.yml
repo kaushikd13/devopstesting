@@ -5,24 +5,15 @@ steps:
     azureSubscription: 'Free Trial (4533115b-e77b-4d70-af61-90e050109554)'
     ScriptType: InlineScript
     Inline: |
-
      Get-AzureRmLocation | select Location
      $location = "eastus"
-     
-
      $resourceGroup = "teststoragerg1"
      New-AzureRmResourceGroup -Name $resourceGroup -Location $location
-     
-     
      $storageAccountName = "kaushikd"
      $skuName = "Standard_LRS"
-     
-
      $storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
        -Name $storageAccountName `
        -Location $location `
        -SkuName $skuName
-     
-
      $ctx = $storageAccount.Context
     azurePowerShellVersion: LatestVersion
