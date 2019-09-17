@@ -1,21 +1,22 @@
-stages:
- - stage: Basics
-   jobs:
-   - job: Project details
-     - subscription: freetrial
-     - resource group: (new)test_group02
-   - job: Instance details
-     - storage account name: kaushikd354
-     - location: (US)East US
-     - performance: standard
-     - account kind: storage(general purpose v1)
-    - Replication: Read-access-geo-redundant storage(RA-GRS)
- - stage: Networking
-   jobs:
-   - job: connectivity method: public endpoint(all networks)
- - stage: Advanced
-   jobs:
-   - job: security
-     - secure transfer required: enabled
-   - job: Data protection
-     - blob soft delete: enabled
+steps:
+- task: AzurePowerShell@3
+  displayName: 'Azure PowerShell script: InlineScript'
+  inputs:
+    azureSubscription: 'Free Trial (4533115b-e77b-4d70-af61-90e050109554)'
+    ScriptType: InlineScript
+    Inline: |
+     Get-AzLocation | select Location
+     $location = "eastus"
+     
+     $resourceGroup = "teststoragerg"
+     New-AzResourceGroup -Name $resourceGroup -Location $location
+     
+     $storageAccountName = "testpshstorage"
+     $skuName = "Standard_LRS"
+     
+     $storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroup `
+       -Name $storageAccountName `
+       -Location $location `
+       -SkuName $skuName
+     
+    azurePowerShellVersion: LatestVersion
