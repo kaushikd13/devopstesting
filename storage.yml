@@ -5,24 +5,24 @@ steps:
     azureSubscription: 'Free Trial (4533115b-e77b-4d70-af61-90e050109554)'
     ScriptType: InlineScript
     Inline: |
-     # Get list of locations and select one.
+
      Get-AzureRmLocation | select Location
      $location = "eastus"
      
-     # Create a new resource group.
+
      $resourceGroup = "teststoragerg1"
      New-AzureRmResourceGroup -Name $resourceGroup -Location $location
      
-     # Set the name of the storage account and the SKU name.
+     
      $storageAccountName = "kaushikd"
      $skuName = "Standard_LRS"
      
-     # Create the storage account.
+
      $storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
        -Name $storageAccountName `
        -Location $location `
        -SkuName $skuName
      
-     # Retrieve the context.
+
      $ctx = $storageAccount.Context
     azurePowerShellVersion: LatestVersion
