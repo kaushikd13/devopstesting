@@ -2,8 +2,8 @@ stages:
  - stage: Basics
    jobs:
    - job: Project details
-      - subscription: freetrial
-      - resource group: (new)test_group02
+     - subscription: freetrial
+     - resource group: (new)test_group02
    - job: Instance details
      - storage account name: kaushikd354
      - location: (US)East US
@@ -19,4 +19,3 @@ stages:
      - secure transfer required: enabled
    - job: Data protection
      - blob soft delete: enabled
-     retain for: 15 days
