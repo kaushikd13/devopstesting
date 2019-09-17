@@ -1,14 +1,15 @@
 steps:
-- task: StorageAccount@1
-  displayName: 'Storage Account'
+- task: AzurePowerShell@3
+  displayName: 'Azure PowerShell script: InlineScript'
   inputs:
     azureSubscription: 'Free Trial (4533115b-e77b-4d70-af61-90e050109554)'
     ScriptType: InlineScript
     Inline: |
+
      Get-AzLocation | select Location
      $location = "eastus"
      
-     $resourceGroup = "teststforkd"
+     $resourceGroup = "teststoragerg"
      New-AzResourceGroup -Name $resourceGroup -Location $location
      
      $storageAccountName = "testpshstorage"
@@ -18,3 +19,6 @@ steps:
        -Name $storageAccountName `
        -Location $location `
        -SkuName $skuName
+     
+     $ctx = $storageAccount.Context
+    azurePowerShellVersion: LatestVersion
