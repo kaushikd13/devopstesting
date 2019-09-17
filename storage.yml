@@ -19,6 +19,4 @@ steps:
        -Name $storageAccountName `
        -Location $location `
        -SkuName $skuName
-     
-     $ctx = $storageAccount.Context
     azurePowerShellVersion: LatestVersion
